@@ -18,6 +18,13 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@tonejs/midi@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@tonejs/midi/-/midi-1.2.2.tgz#ef5985605c36539d0346ed2ec861fb9b9adff78e"
+  integrity sha512-XHgAqmfKBm/ykmw0mxk15/RB903wguA69ecUDSog8rZlssfay6c3mm4B0grvnQFueYJH0LpSRPOt1IutPamYAw==
+  dependencies:
+    midi-file "^1.1.1"
+
 "@types/node@^10.12.18":
   version "10.14.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.1.tgz#8701cd760acc20beba5ffe0b7a1b879f39cb8c41"
@@ -1005,6 +1012,11 @@ meow@^3.1.0:
     read-pkg-up "^1.0.1"
     redent "^1.0.0"
     trim-newlines "^1.0.0"
+
+midi-file@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/midi-file/-/midi-file-1.1.1.tgz#eb82876a2a7ac83174170e27bf57d4e2c8816112"
+  integrity sha512-HI6Y/kc9g1Af0OqMkTzI2AeGgPJMONgQcd/13gBf8C9BcUh7wa/AnXR1Fgl8SIuO7GJmFhSIACEWcwiAz2E2Pg==
 
 mime-db@~1.38.0:
   version "1.38.0"
