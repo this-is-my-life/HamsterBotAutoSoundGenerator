@@ -26,6 +26,7 @@
     "eslint-plugin-standard": "^4.0.0"
   },
   "dependencies": {
+    "@tonejs/midi": "^1.2.2",
     "electron": "^4.1.0"
   }
 }
