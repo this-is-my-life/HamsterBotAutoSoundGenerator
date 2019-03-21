@@ -32,6 +32,9 @@
             let noteText = document.getElementById('noteText').value.split('')
             console.log('총 계이름 수' + noteText.length)
             for (let FGcounter = 0; FGcounter < noteText.length; FGcounter++) {
+              setTimeout(() => {
+                hamster.note(0)
+              }, FGcounter * 250 - 20)
               if (noteText[FGcounter] === '도') {
                 console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 도')
                 setTimeout(() => {
@@ -67,14 +70,31 @@
                 setTimeout(() => {
                   hamster.note(Hamster.NOTE_B_4);
                 }, FGcounter * 250)
+              } else if (noteText[FGcounter] === '또') {
+                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 또')
+                setTimeout(() => {
+                  hamster.note(Hamster.NOTE_C_5);
+                }, FGcounter * 250)
+              } else if (noteText[FGcounter] === '뤠') {
+                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 뤠')
+                setTimeout(() => {
+                  hamster.note(Hamster.NOTE_D_5);
+                }, FGcounter * 250)
+              } else if (noteText[FGcounter] === '믜') {
+                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 믜')
+                setTimeout(() => {
+                  hamster.note(Hamster.NOTE_E_5);
+                }, FGcounter * 250)
               } else {
                 console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 쉼')
                 setTimeout(() => {
                   hamster.note(0)
                 }, FGcounter * 250)
               }
+              setTimeout(() => {
+                  hamster.note(0)
+                }, noteText.length * 250)
             }
-            hamster.note(0)
           }
         }
       </script>
