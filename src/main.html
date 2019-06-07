@@ -12,310 +12,38 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-      button {
-        margin-top: 5px;
-      }
-      #noteText {
-        height: 80vh;
-        resize: none;
-      }
-    </style>
   </head>
   <body>
-      <div class="container-fluid">
-        <button type="button" class="btn btn-danger" onclick="startProcess(0)">정지</button>
-        <button type="button" class="btn btn-primary" onclick="startProcess(1)">시작</button>
-        <button type="button" class="btn btn-warning" onclick="importFile()">열기</button><hr>
-        <textarea class="form-control" id="noteText" placeholder="이곳에 음을 적으세요"></textarea>
-      </div>
+
+    <div id="render" style="text-overflow: clip">
+      Console에 'start(트랙넘버)를 입력하세요'
+    </div>
 
       <script>
         const { dialog } = require('electron').remote
         const Midi = require('@tonejs/midi')
         connect('localhost')
         const hamster = Hamster.create()
-        function importFile () {
-          dialog.showOpenDialog({
-            buttonLabel: '미디 파일 불러오기',
-            filters: [{ name: '미디 시퀀스 파일', extensions: ['mid'] }],
-            openFile: true,
-            openDirectory: false,
-            multiSelections: false
-          }, (filedir) => {
-            if (filedir) {
-              let trackNumber = 0
-              Midi.fromUrl(filedir[0]).then((midi) => {
-                for (let FGcounter = 0; FGcounter < midi.tracks[trackNumber].notes.length; FGcounter++) {
-                  console.log(midi.tracks[trackNumber].notes[FGcounter].name.split('')[1])
-                  setTimeout(() => {
-                    hamster.note(0)
-                  }, FGcounter * 250 - 20)
-                  if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[1] === '1') {
-                    if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'C') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_C_1);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'D') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_D_1);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'E') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_E_1);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'F') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_F_1);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'G') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_G_1);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'A') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_A_1);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'B') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_B_1);
-                      }, FGcounter * 250)
-                    }
-                  } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[1] === '2') {
-                    if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'C') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_C_2);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'D') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_D_2);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'E') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_E_2);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'F') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_F_2);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'G') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_G_2);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'A') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_A_2);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'B') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_B_2);
-                      }, FGcounter * 250)
-                    }
-                  } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[1] === '3') {
-                    if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'C') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_C_3);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'D') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_D_3);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'E') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_E_3);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'F') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_F_3);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'G') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_G_3);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'A') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_A_3);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'B') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_B_3);
-                      }, FGcounter * 250)
-                    }
-                  } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[1] === '4') {
-                    if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'C') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_C_4);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'D') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_D_4);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'E') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_E_4);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'F') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_F_4);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'G') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_G_4);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'A') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_A_4);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'B') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_B_4);
-                      }, FGcounter * 250)
-                    }
-                  } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[1] === '5') {
-                    if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'C') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_C_5);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'D') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_D_5);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'E') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_E_5);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'F') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_F_5);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'G') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_G_5);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'A') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_A_5);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'B') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_B_5);
-                      }, FGcounter * 250)
-                    }
-                  } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[1] === '6') {
-                    if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'C') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_C_6);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'D') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_D_6);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'E') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_E_6);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'F') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_F_6);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'G') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_G_6);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'A') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_A_6);
-                      }, FGcounter * 250)
-                    } else if (midi.tracks[trackNumber].notes[FGcounter].name.split('')[0] === 'B') {
-                      setTimeout(() => {
-                        hamster.note(Hamster.NOTE_B_6);
-                      }, FGcounter * 250)
-                    }
-                  } else {
-                    console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 쉼')
-                    setTimeout(() => {
-                      hamster.note(0)
-                    }, FGcounter * 250)
-                  }
-                }
-              })
-            }
+
+        hamster.note(0)
+        
+        function start (track) {
+          dialog.showOpenDialog({}, (f) => {
+            Midi.fromUrl(f[0]).then((notes) => {
+              console.log('Render FINISHED')
+              for (let counter = 0; true; counter++) {
+                setTimeout(() => {
+                  document.getElementById('render').innerHTML = ('<h4>햄스터 로봇 자동 MIDI 재생 소프트웨어</h4>' + counter + '번째 노트: ' + notes.tracks[track].notes[counter].time + '초에 울림<hr /><b style="font-size: 40px; color: red;">' + notes.tracks[track].notes[counter].name + '</b>, ' + notes.tracks[track].notes[counter].midi + '<hr />Copyright (c) 2019. SWAG Team / PMH. MIT Licensed.')
+                  console.log('Play Note: ' + notes.tracks[track].notes[counter].midi)
+                  hamster.note(notes.tracks[track].notes[counter].midi)
+                  counter++
+                }, notes.tracks[track].notes[counter].time * 1000)
+              }
+            })
           })
         }
 
-        function startProcess (ProcessNumber) {
-          if (ProcessNumber === 0) {
-            hamster.wheels(0)
-            hamster.note(0)
-          } else if (ProcessNumber === 1) {
-            let noteText = document.getElementById('noteText').value.split('')
-            console.log('총 계이름 수' + noteText.length)
-            for (let FGcounter = 0; FGcounter < noteText.length; FGcounter++) {
-              setTimeout(() => {
-                hamster.note(0)
-              }, FGcounter * 250 - 20)
-              if (noteText[FGcounter] === '도') {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 도')
-                setTimeout(() => {
-                  hamster.note(Hamster.NOTE_C_4);
-                }, FGcounter * 250)
-              } else if (noteText[FGcounter] === '레') {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 레')
-                setTimeout(() => {
-                  hamster.note(Hamster.NOTE_D_4);
-                }, FGcounter * 250)
-              } else if (noteText[FGcounter] === '미') {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 미')
-                setTimeout(() => {
-                  hamster.note(Hamster.NOTE_E_4);
-                }, FGcounter * 250)
-              } else if (noteText[FGcounter] === '파') {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 파')
-                setTimeout(() => {
-                  hamster.note(Hamster.NOTE_F_4);
-                }, FGcounter * 250)
-              } else if (noteText[FGcounter] === '솔') {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 솔')
-                setTimeout(() => {
-                  hamster.note(Hamster.NOTE_G_4);
-                }, FGcounter * 250)
-              } else if (noteText[FGcounter] === '라') {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 라')
-                setTimeout(() => {
-                  hamster.note(Hamster.NOTE_A_4);
-                }, FGcounter * 250)
-              } else if (noteText[FGcounter] === '시') {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 시')
-                setTimeout(() => {
-                  hamster.note(Hamster.NOTE_B_4);
-                }, FGcounter * 250)
-              } else if (noteText[FGcounter] === '또') {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 또')
-                setTimeout(() => {
-                  hamster.note(Hamster.NOTE_C_5);
-                }, FGcounter * 250)
-              } else if (noteText[FGcounter] === '뤠') {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 뤠')
-                setTimeout(() => {
-                  hamster.note(Hamster.NOTE_D_5);
-                }, FGcounter * 250)
-              } else if (noteText[FGcounter] === '믜') {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 믜')
-                setTimeout(() => {
-                  hamster.note(Hamster.NOTE_E_5);
-                }, FGcounter * 250)
-              } else {
-                console.log('입력한 계이름 중 ' + FGcounter + '번째 실행됨: 쉼')
-                setTimeout(() => {
-                  hamster.note(0)
-                }, FGcounter * 250)
-              }
-              setTimeout(() => {
-                  hamster.note(0)
-                }, noteText.length * 250)
-            }
-          }
-        }
+
       </script>
 
     <!-- Optional JavaScript -->

@@ -20,7 +20,9 @@ app.on('activate', () => {
 
 function createMainScreen () {
   mainWindow = new electron.BrowserWindow({
-
+    webPreferences: {
+      nodeIntegration: true
+    }
   })
   mainWindow.setMenu(null)
   mainWindow.toggleDevTools()
