@@ -16,7 +16,7 @@
   <body>
 
     <div id="render" style="text-overflow: clip">
-      Console에 'start(트랙넘버)를 입력하세요'
+      Console에 'start(트랙넘버)'를 입력하세요
     </div>
 
       <script>
@@ -33,14 +33,22 @@
               console.log('Render FINISHED')
               for (let counter = 0; true; counter++) {
                 setTimeout(() => {
-                  document.getElementById('render').innerHTML = ('<h4>햄스터 로봇 자동 MIDI 재생 소프트웨어</h4>' + counter + '번째 노트: ' + notes.tracks[track].notes[counter].time + '초에 울림<hr /><b style="font-size: 40px; color: red;">' + notes.tracks[track].notes[counter].name + '</b>, ' + notes.tracks[track].notes[counter].midi + '<hr />Copyright (c) 2019. SWAG Team / PMH. MIT Licensed.')
+                  document.getElementById('render').innerHTML = ('<h4>햄스터 로봇 자동 MIDI 재생 소프트웨어</h4>' + counter + '/' + (notes.tracks[track].notes.length - 1) + '번째 노트: ' + notes.tracks[track].notes[counter].time + '초에 울림<hr /><b style="font-size: 40px; color: red;">' + notes.tracks[track].notes[counter].name + '</b>, ' + notes.tracks[track].notes[counter].midi + '<hr />Copyright (c) 2019. SWAG Team / PMH. MIT Licensed.')
                   console.log('Play Note: ' + notes.tracks[track].notes[counter].midi)
                   hamster.note(notes.tracks[track].notes[counter].midi)
-                  counter++
                 }, notes.tracks[track].notes[counter].time * 1000)
+                setTimeout(() => {
+                  hamster.note(0)
+                  document.getElementById('render').innerHTML = ('<h4>햄스터 로봇 자동 MIDI 재생 소프트웨어</h4>' + counter + '/' + (notes.tracks[track].notes.length - 1) + '번째 쉼표: ' + (notes.tracks[track].notes[counter].time + notes.tracks[track].notes[counter].duration) + '초에 울림<hr /><b style="font-size: 40px; color: red;">　</b><hr />Copyright (c) 2019. SWAG Team / PMH. MIT Licensed.')
+                  counter++
+                }, (notes.tracks[track].notes[counter].time + notes.tracks[track].notes[counter].duration) * 1000)
               }
             })
           })
+        }
+
+        function stop () {
+          clearTimeout(999999999)
         }
 
 
